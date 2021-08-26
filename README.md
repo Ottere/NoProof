@@ -38,8 +38,40 @@
    + create table [테이블이름] (컬럼명1 데이터타입, 컬럼명2 데이터타입, ...);
    + ex) create table crawling (TransSeq integer PRIMARY KEY, FromSaupjaRegNo text, ...);
    + 위와 같은 방식으로 테이블 생성 이후 .tables 명령어로 테이블 목록 확인이 가능합니다. 제대로 생성됬는지 확인해보세요.
-   + 추가 사항) .schema 명령어를 이용하면 테이블과 테이블 내부의 컬럼과 데이터타입까지 확인이 가능합니다.
-
-   
+   + 추가 사항) .schema 명령어를 이용하면 테이블과 테이블 내부의 컬럼과 데이터타입까지 확인이 가능합니다
+4. 실제 생성하기
+   > create table tblErpTaxBillTrans(  
+TransSeq int PRIMARY KEY,  
+FromSaupjaRegNo text,  
+FromSaupjangNo text,  
+FromSaupjaname text,  
+FromDaepyoName text,  
+FromSaupjangAd text,  
+FromUptae text text,  
+FromJongmok text,  
+FromEmailAddr1 text,  
+ToSaupjaRegNo text,  
+ToSaupjangNo text,  
+ToSaupjaName text,  
+ToDaepyoName text,  
+ToSaupjangAddr text,  
+ToUptae text,  
+ToJongmok text,  
+ToEmailAddr1 text,  
+ToEmailAddr2 text,  
+HomeTaxApprNo text,  
+RegDate text,  
+AmtUnc text,  
+AmtTax text,  
+EditSayoo text,  
+AmtTot text,  
+AmtCash text,  
+AmtSupyo text,  
+AmtUEum text,  
+AmtMisu text,  
+GubunRequPay text,  
+FlowProcYN text,  
+SyncIndex text,  
+CorpCode text);
 
 
