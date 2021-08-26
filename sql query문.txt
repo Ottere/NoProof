@@ -1,0 +1,40 @@
+./sqlite3 [DB이름.db] #db 생성
+create table tblErpTaxBillTrans(
+TransSeq int PRIMARY KEY,
+FromSaupjaRegNo text,
+FromSaupjangNo text,
+FromSaupjaname text,
+FromDaepyoName text,
+FromSaupjangAd text,
+FromUptae text text,
+FromJongmok text,
+FromEmailAddr1 text,
+ToSaupjaRegNo text,
+ToSaupjangNo text,
+ToSaupjaName text,
+ToDaepyoName text,
+ToSaupjangAddr text,
+ToUptae text,
+ToJongmok text,
+ToEmailAddr1 text,
+ToEmailAddr2 text,
+HomeTaxApprNo text,
+RegDate text,
+AmtUnc text,
+AmtTax text,
+EditSayoo text,
+AmtTot text,
+AmtCash text,
+AmtSupyo text,
+AmtUEum text,
+AmtMisu text,
+GubunRequPay text,
+FlowProcYN text,
+SyncIndex text,
+CorpCode text)
+ 
+pip install flask
+pip install sqlalchemy
+pip insatll flask-sqlalchemy
+pip install selenium
+pip install pymysql
