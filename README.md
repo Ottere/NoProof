@@ -40,7 +40,7 @@
    + 위와 같은 방식으로 테이블 생성 이후 .tables 명령어로 테이블 목록 확인이 가능합니다. 제대로 생성됬는지 확인해보세요.
    + 추가 사항) .schema 명령어를 이용하면 테이블과 테이블 내부의 컬럼과 데이터타입까지 확인이 가능합니다  
 4. 실제 생성하기
-   >  ```sql
+      ```SQL
       create table tblErpTaxBillTrans(  
       TransSeq int PRIMARY KEY,  
       FromSaupjaRegNo text,  
