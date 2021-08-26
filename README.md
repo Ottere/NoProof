@@ -40,7 +40,7 @@
    + 위와 같은 방식으로 테이블 생성 이후 .tables 명령어로 테이블 목록 확인이 가능합니다. 제대로 생성됬는지 확인해보세요.
    + 추가 사항) .schema 명령어를 이용하면 테이블과 테이블 내부의 컬럼과 데이터타입까지 확인이 가능합니다  
 4. 실제 생성하기
-   >  '''sql
+   >  ```sql
       create table tblErpTaxBillTrans(  
       TransSeq int PRIMARY KEY,  
       FromSaupjaRegNo text,  
@@ -74,7 +74,7 @@
       FlowProcYN text,  
       SyncIndex text,  
       CorpCode text);
-      '''
+      ```
 ## 실제 실행하기
 + 현재 레포지토리에 있는 static 폴더, templates폴더 , crawling.py, sqlite3, chromedriver를 다운받기  
   (chromedriver의 경우 각자 크롬에 맞게 다운로드 바랍니다. github에 올라가 있는 버전은 92.0.4515.159 버전 입니다.)
