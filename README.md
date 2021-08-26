@@ -8,8 +8,9 @@
 
 
 ## pip install
-시작하기 앞서 프로그램 실행에 필요한 모듈을 설치하겠습니다.
-  
+시작하기 앞서 프로그램 실행에 필요한 모듈을 설치하겠습니다.  
+이후의 모든 설정은 터미널창에서 실행됩니다. (VSCODE에서 Ctrl + ` 누르면 바로 터미널 창이 열립니다.)
+
   
   > pip install flask  
   pip install sqlalchemy  
