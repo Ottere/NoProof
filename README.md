@@ -41,7 +41,7 @@
    + 추가 사항) .schema 명령어를 이용하면 테이블과 테이블 내부의 컬럼과 데이터타입까지 확인이 가능합니다  
 4. 실제 생성하기
       ```SQL
-      create table tblErpTaxBillTrans(  
+      CREATE TABLE tblErpTaxBillTrans(  
       TransSeq int PRIMARY KEY,  
       FromSaupjaRegNo text,  
       FromSaupjangNo text,  
