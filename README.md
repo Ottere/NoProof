@@ -7,8 +7,19 @@
 (컴퓨터 앞에만 있다면 업무시간 외에도 답변가능)  
   
 DB SQL문법과 python SQLAlchemy 문법은 txt파일에 정리해두었습니다.  
-코딩 및 코드 분석시 참고하시기 바랍니다.
+코딩 및 코드 분석시 참고하시기 바랍니다.  
 
+## 사용한 에디터/DB/언어
++ Visaul Studio Code
++ 현재 sqlite3 / 추후 MaraDB로 변경 예정
++ Python, HTML, CSS, SQL
+  + Python 모듈 : Flask, Flask-SQLAlchemy, Selenium, pymysql
+
+## 준비사항
++ Visual Studio Code 설치
++ Python 설치 
++ sqlite3 다운로드
++ 각자 버전에 맞는 chromedriver 다운로드
 
 ## pip install
 시작하기 앞서 프로그램 실행에 필요한 모듈을 설치하겠습니다.  
@@ -28,7 +39,7 @@ DB SQL문법과 python SQLAlchemy 문법은 txt파일에 정리해두었습니�
 
 (sql query문.txt 파일로 가면 사용한 문법이 적혀있습니다. 추가적인 내용이므로 참고하면 좋지만 하위 설명만 보고 진행해도 무관합니다.)
 
-1. 데이터베이스 설치  
+1. 데이터베이스 파일 다운로드  
    + 데이터베이스 파일은 sqlite3.exe파일을 다운받으신 뒤 사용하실 폴더에 저장하면 됩니다
 
 2. 데이터베이스 생성  
