@@ -62,7 +62,8 @@ def crapping():
     db.session.delete([변수])
     db.session.commit()
 
-
+이 외에도 필요한 쿼리문 또는 문법이 있을경우 카카오톡으로 물어보면 추가 및 수정 조치하겠습니다.
+* 아직 미완성임 월욜날 추가 업데이트 할 예정
 
 
 
