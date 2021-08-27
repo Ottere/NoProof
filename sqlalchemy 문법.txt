@@ -46,7 +46,7 @@ def crapping():
         --> tblErpTaxBillTrans테이블의 HomeTaxApprNo가 12345인 데이터 1개만 가지고 온다.
         log_data = tblsignup.query.filter(and_(tblsignup.UserEmail==Userid),(tblsignup.UserPassword==Userpass)).first()
         --> 이런식으로 and 조건도 사용가능. or 조건도 or_(tblsignup.UserEmail==Userid),(tblsignup.UserPassword==Userpass)로 사용가능
-3. insert
+3. insert 문
     [변수] = [테이블명](테이블컬럼1 값, 테이블컬럼2 값)
     db.session.add([변수]) --> DB에 해당 데이터 추가
     db.session.commit()  --> 모든 DB작업은 commit을 해줘야 실제 DB에 적용됌. commit안하면 실제 적용 X
@@ -56,12 +56,15 @@ def crapping():
         data = crawling(1) / db.session.add(data) / db.session.commit() --> 이렇게하면 1과 NULL (빈값) 이 저장됩니다.
         data = crawling(FromSaupjaRegNo = '사업장번호') / db.session.add(data) / db.session.commit() -->이렇게하면 직접적으로 데이터를 넣을 수 있습니다. 저장데이터 : (NULL, '사업장번호')
 
-4. delete
+4. delete문
     조건식으로 데이터 가져와 해당 데이터 삭제. (조건없이 query.all()하고 삭제시 전체 데이터 삭제)
     [변수] = [테이블명].query.filter([조건]).first() 또는 .all()
     db.session.delete([변수])
     db.session.commit()
 
+5. update문
+    위와 같이 변수에 데이터를 담아서 변수.컬럼명 = 변경할 값 하고서 commit으로 저장하면 변경됌
+    
 이 외에도 필요한 쿼리문 또는 문법이 있을경우 카카오톡으로 물어보면 추가 및 수정 조치하겠습니다.
 * 아직 미완성임 월욜날 추가 업데이트 할 예정
 
