@@ -16,10 +16,10 @@ DB SQL문법과 python SQLAlchemy 문법은 txt파일에 정리해두었습니�
   + Python 모듈 : Flask, Flask-SQLAlchemy, Selenium, pymysql
 
 ## 준비사항
-+ Visual Studio Code 설치
-+ Python 설치 
++ [Visual Studio Code 설치](https://code.visualstudio.com/)
++ [Python 설치](https://www.python.org/downloads/)
 + sqlite3 다운로드
-+ 각자 버전에 맞는 chromedriver 다운로드
++ 각자 버전에 맞는 [chromedriver 다운로드](https://chromedriver.chromium.org/downloads)
 
 ## pip install
 시작하기 앞서 프로그램 실행에 필요한 모듈을 설치하겠습니다.  
