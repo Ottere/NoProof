@@ -10,8 +10,8 @@ DB SQL문법과 python SQLAlchemy 문법은 txt파일에 정리해뒀습니다.
 코딩 및 코드 분석시 참고하시기 바랍니다.  
 
 ## 사용한 에디터/DB/언어
-+ Visaul Studio Code
-+ 현재 sqlite3 / 추후 MaraDB로 변경 예정
++ Visual Studio Code
++ 현재 sqlite3 / 추후 MariaDB로 변경 예정
 + Python, HTML, CSS, SQL
   + Python 모듈 : Flask, Flask-SQLAlchemy, Selenium, pymysql
 
