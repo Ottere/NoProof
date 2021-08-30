@@ -34,54 +34,73 @@ def index():
 def crapping():
     [해당 페이지에서 작동할 코드]
     
-3-1 method GET과 POST  
+3-1 method GET과 POST로 flask에 값 넘겨주기
 @app.route("/[URL], methods =['GET','POST])
 def [함수명]():  
     [해당 페이지에서 작동할 코드]
     
 GET이란?
-● GET은 주소줄에 데이터 값이 ?뒤에 쌍으로 이어붙어서 전달됩니다.. ex) http://url/bbslist.html?id=5&pagenum=2
+● GET은 주소줄에 데이터 값이 ?뒤에 쌍으로 이어붙어서 전달됩니다.. ex) http://[url]/?num=123
 ● 게시판의 글 리스트 또는 글 보기 기능 등 (서버의 데이터를 변경하는 용도로는 사용 안하는 편)
 
 POST란?
 ● POST는 데이터 값이 숨겨져서 넘어갑니다 (사용자에게 보이지 않음). form 태그를 이용하여 안에 있는 값을 넘겨 flask의 경우 request로 받아 사용합니다.
+● json의 ajax 문법을 사용한다면 form태그 없이 버튼 클릭으로도 데이터를 넘길 수 있습니다. (추후 필요시 설명문 작성하겠습니다.)
 ● POST는 서버의 값이나 상태를 바꾸기 위해서 사용합니다. (서버의 데이터를 변경할때 주로 사용) ex) 글 작성, 글 수정 등등 실제 변경되는 값
 
+3-2 request로 flask에서 값 받기
+※GET에서 ex)로 쓴 문장을 예제로 들고 진행하겠습니다.
+● [변수] = reuqest.args=["num"] --> 변수에 ?num=123으로 넘긴 데이터, 즉 123이 들어갑니다. 
+
+※POST 방식은 <form action="/[URL]" name="[name]" method="POST"> <input type="text" name ="num" value="POST입니다."> </form> 이라는 태그를 전제하에 두고 진행하겠습니다.
+● [변수] = request.form["num"] --> 변수에 name 속성의 값이 num인것의 값을 넣어줍니다. 즉 POST입니다. 라는 데이터가 변수에 들어갑니다.
+● 이 방법 또한 input 또는 값이 여러개면 그만큼 request.form을 만들어 여러개를 넘겨주고 받을 수 있습니다.
+ 
 4. SQLAlchemy로 DB 데이터 제어하기
 
-4-1. select 문
+4-1. select 문법 및 예제
     [변수] = [테이블명].query.all() --> select * from [테이블 명]
     ex) all_data = tblErpTaxBillTrans.query.all() --> 모든값 가져옴
          all_data = tblErpTaxBillTrans.query.first() --> 첫번째 값만 가져옴
          all_data = tblErpTaxBillTrans.query.last() --> 마지막 값만 가져옴
-4-2. where 문
+         
+4-2. where 문법 및 예제
     [변수] = [테이블명].query.filter([테이블명].[컬럼명] >=10).all() --> select * from [테이블 명]
     ex) ApprNoData=tblErpTaxBillTrans.query.filter(tblErpTaxBillTrans.HomeTaxApprNo==12345).first()
         --> tblErpTaxBillTrans테이블의 HomeTaxApprNo가 12345인 데이터 1개만 가지고 온다.
         log_data = tblsignup.query.filter(and_(tblsignup.UserEmail==Userid),(tblsignup.UserPassword==Userpass)).first()
         --> 이런식으로 and 조건도 사용가능. or 조건도 or_(tblsignup.UserEmail==Userid),(tblsignup.UserPassword==Userpass)로 사용가능
-4-3. insert 문
+        
+4-3. insert 문법 및 예제
     [변수] = [테이블명](테이블컬럼1 값, 테이블컬럼2 값)
     db.session.add([변수]) --> DB에 해당 데이터 추가
     db.session.commit()  --> 모든 DB작업은 commit을 해줘야 실제 DB에 적용됌. commit안하면 실제 적용 X
 
-    ex) 테이블 이름이 crawling이고 컬럼이 TransSeq와 FromSaupjaRegNo 있다는 가정하에 진행하겠습니다.
+    ex) ※ 테이블 이름이 crawling이고 컬럼이 TransSeq와 FromSaupjaRegNo 있다는 가정하에 진행하겠습니다.
         data = crawling(1,'사업장번호') / db.session.add(data) / db.session.commit()  --> 이렇게하면 1과 사업장번호라는 데이터가 저장됩니다.
         data = crawling(1) / db.session.add(data) / db.session.commit() --> 이렇게하면 1과 NULL (빈값) 이 저장됩니다.
         data = crawling(FromSaupjaRegNo = '사업장번호') / db.session.add(data) / db.session.commit() -->이렇게하면 직접적으로 데이터를 넣을 수 있습니다. 저장데이터 : (NULL, '사업장번호')
 
-4-4. delete 문
+4-4. delete 문법 및 예제
     조건식으로 데이터 가져와 해당 데이터 삭제. (조건없이 query.all()하고 삭제시 전체 데이터 삭제)
     [변수] = [테이블명].query.filter([조건]).first() 또는 .all()
     db.session.delete([변수])
     db.session.commit()
+    
+    ※ 테이블 이름이 crawling이고 컬럼이 TransSeq와 FromSaupjaRegNo 있다는 가정하에 진행하겠습니다.
+    ※ crawling 테이블에 TransSeq = 1 이고 FromSaupjaRegNo = 10이라는 하나의 데이터가 존재한다고 가정합니다.
+    data = crawling.query.all()
+    db.session.delete(data)
+    db.session.commit()
 
-4-5. update문
-    위와 같이 변수에 데이터를 담아서 변수.컬럼명 = 변경할 값 하고서 commit으로 저장하면 변경됌
+4-5. update문 예제 
+    ※ 테이블 이름이 crawling이고 컬럼이 TransSeq와 FromSaupjaRegNo 있다는 가정하에 진행하겠습니다.
+    ※ crawling 테이블에 TransSeq = 1 이고 FromSaupjaRegNo = 10이라는 하나의 데이터가 존재한다고 가정합니다.
+    ex) data = crawling.query.first() --> data란 변수에 위 1과 10이란 값이 들어있는 crawling테이블의 데이터가 들어갑니다. 예를들면 {TransSeq:1,FromSaupjaRegNo:10}
+        data.TransSeq = 5 --> data는 crawling이란 테이블의 데이터이기 때문에 TransSeq로 접근이 가능합니다.
+        db.session.commit() --> 새로 추가하거나 삭제하는것이 없기에 바로 commit()을 실행해주면 적용됩니다. {TransSeq:5,FromSaupjaRegNo:5}
     
 이 외에도 필요한 쿼리문 또는 문법이 있을경우 카카오톡으로 물어보면 추가 및 수정 조치하겠습니다.
-* 아직 미완성임 월욜날 추가 업데이트 할 예정
-
 
 
 
