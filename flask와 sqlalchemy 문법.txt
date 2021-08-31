@@ -40,21 +40,21 @@ def [함수명]():
     [해당 페이지에서 작동할 코드]
     
 GET이란?
-● GET은 주소줄에 데이터 값이 ?뒤에 쌍으로 이어붙어서 전달됩니다.. ex) http://[url]/?num=123
-● 게시판의 글 리스트 또는 글 보기 기능 등 (서버의 데이터를 변경하는 용도로는 사용 안하는 편)
+    ● GET은 주소줄에 데이터 값이 ?뒤에 쌍으로 이어붙어서 전달됩니다.. ex) http://[url]/?num=123
+    ● 게시판의 글 리스트 또는 글 보기 기능 등 (서버의 데이터를 변경하는 용도로는 사용 안하는 편)
 
 POST란?
-● POST는 데이터 값이 숨겨져서 넘어갑니다 (사용자에게 보이지 않음). form 태그를 이용하여 안에 있는 값을 넘겨 flask의 경우 request로 받아 사용합니다.
-● json의 ajax 문법을 사용한다면 form태그 없이 버튼 클릭으로도 데이터를 넘길 수 있습니다. (json ajax 관련 자료는 추후 필요시 설명문 작성하겠습니다.)
-● POST는 서버의 값이나 상태를 바꾸기 위해서 사용합니다. (서버의 데이터를 변경할때 주로 사용) ex) 글 작성, 글 수정 등등 실제 변경되는 값
+    ● POST는 데이터 값이 숨겨져서 넘어갑니다 (사용자에게 보이지 않음). form 태그를 이용하여 안에 있는 값을 넘겨 flask의 경우 request로 받아 사용합니다.
+    ● json의 ajax 문법을 사용한다면 form태그 없이 버튼 클릭으로도 데이터를 넘길 수 있습니다. (json ajax 관련 자료는 추후 필요시 설명문 작성하겠습니다.)
+    ● POST는 서버의 값이나 상태를 바꾸기 위해서 사용합니다. (서버의 데이터를 변경할때 주로 사용) ex) 글 작성, 글 수정 등등 실제 변경되는 값
 
 3-2 request로 flask에서 값 받기
-※GET에서 ex)로 쓴 문장을 예제로 들고 진행하겠습니다.
-● [변수] = reuqest.args=["num"] --> 변수에 ?num=123으로 넘긴 데이터, 즉 123이 들어갑니다. 
+    ※GET에서 ex)로 쓴 문장을 예제로 들고 진행하겠습니다.
+    ● [변수] = reuqest.args=["num"] --> 변수에 ?num=123으로 넘긴 데이터, 즉 123이 들어갑니다. 
 
-※POST 방식은 <form action="/[URL]" name="[name]" method="POST"> <input type="text" name ="num" value="POST입니다."> </form> 이라는 태그를 전제하에 두고 진행하겠습니다.
-● [변수] = request.form["num"] --> 변수에 name 속성의 값이 num인것의 값을 넣어줍니다. 즉 POST입니다. 라는 데이터가 변수에 들어갑니다.
-● 이 방법 또한 input 또는 값이 여러개면 그만큼 request.form을 만들어 여러개를 넘겨주고 받을 수 있습니다.
+    ※POST 방식은 <form action="/[URL]" name="[name]" method="POST"> <input type="text" name ="num" value="POST입니다."> </form> 이라는 태그를 전제하에 두고 진행하겠습니다.
+    ● [변수] = request.form["num"] --> 변수에 name 속성의 값이 num인것의 값을 넣어줍니다. 즉 POST입니다. 라는 데이터가 변수에 들어갑니다.
+    ● 이 방법 또한 input 또는 값이 여러개면 그만큼 request.form을 만들어 여러개를 넘겨주고 받을 수 있습니다.
  
 4. SQLAlchemy로 DB 데이터 제어하기
 
@@ -100,6 +100,16 @@ POST란?
         data.TransSeq = 5 --> data는 crawling이란 테이블의 데이터이기 때문에 TransSeq로 접근이 가능합니다.
         db.session.commit() --> 새로 추가하거나 삭제하는것이 없기에 바로 commit()을 실행해주면 적용됩니다. {TransSeq:5,FromSaupjaRegNo:5}
     
+5. 각종 모듈에 대한 설명
+
+5-1. jinja2란
+    
+
+
+5-2. render_template
+
+5-3. url_for
+
 이 외에도 필요한 쿼리문 또는 문법이 있을경우 카카오톡으로 물어보면 추가 및 수정 조치하겠습니다.
 
 
