@@ -107,9 +107,17 @@ POST란?
 
 
 5-2. render_template
-
+    render_template으로 넘긴 html을 화면에 나타내주는 모듈입니다.
+    python 함수의 마지막에 return render_template ('[html], [변수]=[html로 보낼 데이터],...)로 사용가능
+    ex) return render_template('academy.html', one=one_data, two=two_data, log_getdata=log_getdata,log_id=log_id,logo=logo)
+    
 5-3. url_for
-
+    url_for으로 다른 route, 즉 다른 url 경로에 있는 함수로 이동 할 수 있습니다.
+    return redirect(url_for('[함수명]')
+    ex) def index(): [코드] 라는 함수가 있다고 가정하에 진행하겠습니다.
+        def login():
+            [코드]
+            return redirect(url_for('index')) --> login의 내용도 실행하며 index로 이동하여 index의 내용도 실행합니다.
 이 외에도 필요한 쿼리문 또는 문법이 있을경우 카카오톡으로 물어보면 추가 및 수정 조치하겠습니다.
 
 
