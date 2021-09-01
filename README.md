@@ -89,6 +89,10 @@ DB SQL문법과 python SQLAlchemy 문법은 txt파일에 정리해뒀습니다.
       SyncIndex text,  
       CorpCode text);
       ```
+## 실행하기 전 첫 로그인 
++ 공인인증서의 브라우저 등록이 완료되어야 막힘 없이 진행이 가능합니다.
++ 해당 github에 login.md로 내용을 정리해놓았습니다. 참고하여 진행해 주시기 바랍니다.
+
 ## 실제 실행하기
 + 현재 레포지토리에 있는 static 폴더, templates폴더 , crawling.py, sqlite3, chromedriver를 다운받기  
   (chromedriver의 경우 각자 크롬에 맞게 다운로드 바랍니다. github에 올라가 있는 버전은 92.0.4515.159 버전 입니다.)
