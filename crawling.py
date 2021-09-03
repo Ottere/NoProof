@@ -8,21 +8,19 @@ from sqlalchemy.sql.elements import Null
 from datetime import datetime
 import os, sys, re, random, string, pymysql, sqlalchemy, json, time, os
 from itertools import groupby
-from openpyxl.worksheet.views import SheetView
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from urllib.request import urlretrieve
-from openpyxl import Workbook
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 
 app = Flask(__name__)
-app.secret_key = "Secret Key"
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///exam.db' # db와 flask 연결 *현재 sqlite3 사용중 -> 추후 mariadb로 변경 예정
+app.secret_key = "Secret Key" #보안키 설정 (암호화)
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///exam.db' # ///뒷 부분은 본인의 db파일 이름을 사용하면 됌. *현재 sqlite3 사용중 -> 추후 mariadb로 변경 예정
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -122,7 +120,7 @@ def scrape():
     time.sleep(2)
     selecte_box=driver.find_element_by_xpath('//*[@id="anchor22"]') #로그인화면 로그인 버튼
     selecte_box.click()
-    time.sleep(3)
+    time.sleep(4)
 
     #로그인
     element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "dscert"))) #인증서 선택창 iframe 로딩 대기
@@ -131,7 +129,6 @@ def scrape():
     
     # 인증서 리스트 로딩 대기
     element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[9]/div[2]/div[2]/div[1]/div[6]/div/div[2]/div/div[4]/div[2]/div/table/tbody/tr/td"))) 
-
     #공인인증서 선택
     companyName='지오유' #회사이름
     if companyName=='지오유':
@@ -148,13 +145,16 @@ def scrape():
     selecte_box.click()
     driver.switch_to.default_content() #현재 iframe 탈출
 
-    # #팝업 iframe
-    element = WebDriverWait(driver, 10).until(
-    EC.visibility_of_element_located((By.ID, "UTXPPABB29_iframe")))
-    driver.switch_to.frame(element)
-    driver.find_element_by_xpath('//*[@id="btnCloseInvtSpec"]').click() #팝업창 닫기버튼
-    driver.switch_to.default_content()
-    time.sleep(1)
+    try : #팝업창이 존재하면 팝업창 닫기
+        element = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.ID, "UTXPPABB29_iframe")))
+        driver.switch_to.frame(element)
+        driver.find_element_by_xpath('//*[@id="btnCloseInvtSpec"]').click() #팝업창 닫기버튼
+        driver.switch_to.default_content()
+    except: #없으면 패스
+        pass
+
+    time.sleep(2)
 
     # #조회클릭
     selecte_box = WebDriverWait(driver, 10).until(
@@ -199,7 +199,7 @@ def scrape():
     divide=int(number.text)//10+2
 
     def reply():
-        for i in range(3,13): # 3~12
+        for i in range(3,13): # 3~12e
             time.sleep(2)
             try:
                 liclick=driver.find_element_by_xpath('/html/body/div[1]/div[4]/div[3]/div[7]/div/div/div[1]/ul/li['+str(i)+']') #(페이지 넘김)
@@ -304,6 +304,6 @@ def scrape():
             print('done!')
             break
     driver.quit()
-    return redirect(url_for('index'))
+    # return redirect(url_for('index'))
 if __name__=="__main__":
     app.run(debug=True)
