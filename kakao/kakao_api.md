@@ -28,3 +28,73 @@ https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={R
 ![image](https://user-images.githubusercontent.com/69878816/132789530-97a76bf4-0e55-469c-a754-f794cb9dae62.png)
 + 해당 화면이 나오면 성공, 해당 화면 URL의 ?code=의 뒤부터 복사하여 저장합니다. 
 + ex) tIQ9GMdfOCFKQFqpAwfwASAjbnbxRQj_2Zmqlj8RzpTCO5z1aHaJpz2RCLqSul1tEbBw-Qo9dZoAAAF7zYi9Ww
+
+
+## 사용자 토큰 json으로 저장하기  
+``` python
+import requests
+
+url = 'https://kauth.kakao.com/oauth/token'
+rest_api_key = '자신의 REST API 키' 
+redirect_uri = 'https://example.com/oauth'
+authorize_code = '자신의 인증 코드' 
+
+data = {
+    'grant_type':'authorization_code',
+    'client_id':rest_api_key,
+    'redirect_uri':redirect_uri,
+    'code': authorize_code,
+    }
+
+response = requests.post(url, data=data)
+tokens = response.json()
+print(tokens)
+
+# json 저장
+import json
+#1.
+with open(r"C:\Users\user\Desktop\PythonWorkspace\kakao_test\kakao_code.json","w") as fp:
+    json.dump(tokens, fp)
+
+#2.
+with open("kakao_code.json","w") as fp:
+    json.dump(tokens, fp)
+```
+  
+위 코드의 #1은 json파일의 경로를 지정하여 생성하는것이고, #2는 python 파일과 같은 위치에 생성하는것입니다.  
+둘 중 하나만 사용하도록 합니다.
+
+## 메시지 보내기
+```python
+import requests
+import json
+
+#1.
+with open(r"C:\Users\user\Desktop\PythonWorkspace\kakao_test\kakao_code.json","r") as fp:
+    tokens = json.load(fp)
+
+#2.
+with open("kakao_code.json","r") as fp:
+    tokens = json.load(fp)
+
+url="https://kapi.kakao.com/v2/api/talk/memo/default/send"
+
+# kapi.kakao.com/v2/api/talk/memo/default/send 
+
+headers={
+    "Authorization" : "Bearer " + tokens["access_token"]
+}
+
+data={
+    "template_object": json.dumps({
+        "object_type":"text",
+        "text":"Hello, world!",
+        "link":{
+            "web_url":"www.naver.com"
+        }
+    })
+}
+
+response = requests.post(url, headers=headers, data=data)
+response.status_code
+```
