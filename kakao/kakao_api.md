@@ -98,3 +98,4 @@ data={
 response = requests.post(url, headers=headers, data=data)
 response.status_code
 ```
+친구에게 보내기는 추후 작성 
