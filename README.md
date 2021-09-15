@@ -1,5 +1,5 @@
 # selenium
-분당경영고등학교 python 2팀  
+분당경영고등학교 python 무증빙 프로젝트
   
   #### _python selenium을 이용해 국세청 홈택스의 데이터를 크롤링하고  flask 웹서버와 연결하여 웹 화면에 나타내기_
 
